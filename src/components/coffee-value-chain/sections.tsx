@@ -2,41 +2,36 @@
 
 import Image from "next/image";
 import {
-  actors,
+  comparisonRows,
+  conclusionTakeaways,
   heroStats,
   imageMap,
   realPolicies,
   statePolicies,
   theoryCards,
-  unitWarningRows,
-  valueChainConclusion,
 } from "./data";
-import { Reveal, SectionShell, StatCard } from "./ui";
+import { StakeholderTimeline } from "./StakeholderTimeline";
+import { ConceptCard, CTAButton, Reveal, SectionShell, StatCard } from "./ui";
 
-/* Helper: ảnh trong khung bo góc, giữ tỷ lệ, không méo */
+/* Ảnh trong khung bo góc, giữ tỷ lệ, không méo */
 function Framed({
   src,
   alt,
   ratio = "aspect-[4/3]",
   priority = false,
+  sizes = "(max-width: 1024px) 100vw, 50vw",
 }: {
   src: string;
   alt: string;
   ratio?: string;
   priority?: boolean;
+  sizes?: string;
 }) {
   return (
     <div
-      className={`relative ${ratio} w-full overflow-hidden rounded-card border border-coffee/10 bg-coffee/5 shadow-sm`}
+      className={`relative ${ratio} w-full overflow-hidden rounded-card border border-coffee/10 bg-coffee/5 shadow-md`}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority={priority}
-        sizes="(max-width: 1024px) 100vw, 50vw"
-        className="object-cover"
-      />
+      <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
     </div>
   );
 }
@@ -44,56 +39,55 @@ function Framed({
 /* ============================ 1. HERO ============================ */
 export function HeroSection({
   onStart,
-  onPresentation,
+  onSeeChain,
 }: {
   onStart: () => void;
-  onPresentation: () => void;
+  onSeeChain: () => void;
 }) {
   return (
-    <section id="hero" className="bg-cream-light px-6 pb-20 pt-12 sm:px-10 lg:px-16">
+    <section id="hero" className="bg-cream-light px-6 pb-24 pt-14 sm:px-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <span className="mb-4 inline-block rounded-chip border border-coffee/15 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-clay">
-              Kinh tế chính trị Mác - Lênin
-            </span>
+            <p className="mb-4 text-sm font-medium text-coffee/60">
+              Một bài học nhỏ về Kinh tế chính trị Mác - Lênin
+            </p>
             <h1 className="display text-4xl font-extrabold text-coffee-dark sm:text-5xl lg:text-6xl">
               Một ly cà phê <span className="text-clay">85.000đ</span>: Ai đang hưởng lợi?
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-coffee/85">
-              Từ nông dân Đắk Lắk đến ly cà phê ở thành phố, chuỗi giá trị tạo ra nhiều lợi ích
-              nhưng không phải chủ thể nào cũng nhận phần tương xứng.
+              Từ hạt cà phê ở nông trại đến ly cà phê ngoài quán, giá trị đã đi qua nhiều khâu khác
+              nhau. Vậy phần lợi ích được chia như thế nào?
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <button
-                onClick={onStart}
-                className="rounded-chip bg-coffee px-6 py-3 font-semibold text-cream shadow-sm transition hover:bg-coffee-dark active:translate-y-px"
-              >
-                Bắt đầu phân tích
-              </button>
-              <button
-                onClick={onPresentation}
-                className="rounded-chip border border-coffee/25 px-6 py-3 font-semibold text-coffee-dark transition hover:bg-coffee/5 active:translate-y-px"
-              >
-                Mở chế độ thuyết trình
-              </button>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <CTAButton variant="primary" onClick={onStart}>
+                Bắt đầu tìm hiểu
+              </CTAButton>
+              <CTAButton variant="secondary" onClick={onSeeChain}>
+                Xem hành trình hạt cà phê
+              </CTAButton>
             </div>
           </Reveal>
 
           <Reveal delay={120}>
-            <Framed src={imageMap.hero} alt="Chuỗi giá trị cà phê từ nông trại đến ly cà phê thành phố" ratio="aspect-[5/4]" priority />
+            <Framed
+              src={imageMap.hero}
+              alt="Hạt cà phê đi từ nông trại Đắk Lắk đến ly cà phê ngoài quán ở thành phố"
+              ratio="aspect-[5/4]"
+              priority
+            />
           </Reveal>
         </div>
 
-        <Reveal delay={80} className="mt-12">
-          <div className="grid gap-4 sm:grid-cols-3">
+        <Reveal delay={80} className="mt-14">
+          <div className="grid items-stretch gap-5 sm:grid-cols-3">
             {heroStats.map((s) => (
               <StatCard key={s.value} value={s.value} label={s.label} accent={s.accent} />
             ))}
           </div>
-          <p className="mt-4 text-sm italic text-coffee/60">
-            Hai con số khác đơn vị nên không dùng để kết luận trực tiếp, mà dùng để mở vấn đề về
-            phân phối lợi ích.
+          <p className="mt-5 text-coffee/60">
+            Hai con số này khác đơn vị, nên không thể đặt cạnh nhau để kết luận. Chúng chỉ để mở ra
+            câu hỏi: phần lợi ích đang được chia ra sao?
           </p>
         </Reveal>
       </div>
@@ -104,24 +98,26 @@ export function HeroSection({
 /* ============================ 2. CASE ============================ */
 export function CaseSection() {
   return (
-    <SectionShell id="case" tone="cream" kicker="Case study" title="Câu chuyện của anh Khánh">
-      <div className="grid items-center gap-10 lg:grid-cols-2">
+    <SectionShell
+      id="case"
+      tone="cream"
+      title="Câu chuyện của anh Khánh"
+      lead="Anh Khánh bán cà phê theo giá thu mua, nhưng ly cà phê ngoài quán lại có giá cao hơn rất nhiều. Khoảng cách đó không thể nhìn đơn giản bằng một phép so sánh."
+    >
+      <div className="grid items-center gap-12 lg:grid-cols-2">
         <Reveal>
-          <Framed src={imageMap.farmer} alt="Nông dân trồng cà phê ở Đắk Lắk" />
+          <Framed src={imageMap.farmer} alt="Anh Khánh đang chăm sóc vườn cà phê ở Đắk Lắk" />
         </Reveal>
         <Reveal delay={100}>
-          <p className="text-lg leading-relaxed text-coffee/85">
-            Anh Khánh là nông dân trồng cà phê ở Đắk Lắk. Thu nhập của anh phụ thuộc nhiều vào
-            giá thu mua, thời tiết, chi phí phân bón, nhân công và khả năng thương lượng với
-            thương lái. Trong khi đó, khi cà phê đi qua các khâu rang xay, phân phối và bán lẻ,
-            giá trị cuối cùng tăng lên nhờ chế biến, dịch vụ, thương hiệu, mặt bằng và trải nghiệm
-            tiêu dùng.
+          <p className="text-lg leading-loose text-coffee/85">
+            Thu nhập của anh phụ thuộc vào giá thu mua, thời tiết, chi phí phân bón và việc thương
+            lượng với thương lái. Trong khi đó, càng đi về phía quán cà phê, giá của hạt cà phê
+            càng tăng nhờ chế biến, phục vụ, mặt bằng và thương hiệu.
           </p>
-          <div className="mt-6 rounded-card border border-clay/30 bg-clay/10 p-6">
-            <p className="text-sm font-bold uppercase tracking-wide text-clay">Vấn đề đặt ra</p>
+          <div className="mt-6 rounded-card border-l-4 border-clay bg-clay/10 p-6">
+            <p className="text-sm font-semibold text-clay">Câu hỏi đặt ra</p>
             <p className="mt-2 text-lg font-medium leading-relaxed text-coffee-dark">
-              Nếu chuỗi giá trị cùng tạo ra lợi ích, vì sao người sản xuất nguyên liệu có thể nhận
-              phần lợi ích thấp và chịu rủi ro lớn hơn?
+              Giá tăng lên ở những khâu nào, và ai mới là người chịu chi phí, rủi ro nhiều nhất?
             </p>
           </div>
         </Reveal>
@@ -136,17 +132,13 @@ export function TheorySection() {
     <SectionShell
       id="theory"
       tone="light"
-      kicker="Lý thuyết 5.3.1"
-      title="Lợi ích kinh tế và quan hệ lợi ích kinh tế"
-      lead="Ba khái niệm nền tảng theo giáo trình, làm cơ sở để phân tích chuỗi cà phê."
+      title="Vì sao mỗi bên lại muốn một điều khác nhau?"
+      lead="Ai tham gia vào chuỗi cà phê cũng mong nhận được một phần lợi ích cho mình. Vấn đề là những mong muốn ấy thường không trùng nhau, và đó là lúc lợi ích các bên bắt đầu va vào nhau."
     >
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid items-stretch gap-5 md:grid-cols-3">
         {theoryCards.map((c, i) => (
           <Reveal key={c.title} delay={i * 90}>
-            <div className={`h-full rounded-card border-t-4 ${c.accent} bg-white p-6 shadow-sm`}>
-              <h3 className="text-xl font-bold text-coffee-dark">{c.title}</h3>
-              <p className="mt-3 leading-relaxed text-coffee/80">{c.body}</p>
-            </div>
+            <ConceptCard title={c.title} body={c.body} accent={c.accent} />
           </Reveal>
         ))}
       </div>
@@ -155,80 +147,23 @@ export function TheorySection() {
 }
 
 /* ======================= 4. VALUE CHAIN ========================= */
-function PowerMeter({ level }: { level: number }) {
-  return (
-    <div className="mt-1 flex gap-1" aria-label={`Quyền lực thương lượng mức ${level} trên 4`}>
-      {[1, 2, 3, 4].map((n) => (
-        <span
-          key={n}
-          className={`h-1.5 flex-1 rounded-full ${n <= level ? "bg-coffee" : "bg-coffee/15"}`}
-        />
-      ))}
-    </div>
-  );
-}
-
 export function ValueChainSection() {
   return (
     <SectionShell
       id="value-chain"
       tone="light"
-      kicker="Chuỗi quan hệ lợi ích"
-      title="Nông dân, thương lái, rang xay, bán lẻ, người tiêu dùng"
-      lead="Giá trị tăng dần qua từng khâu. Bấm theo dõi đóng góp, lợi ích, rủi ro và quyền lực thương lượng của mỗi chủ thể."
+      title="Hành trình của hạt cà phê"
+      lead="Trước khi thành một ly cà phê, hạt cà phê đi qua nhiều khâu. Mỗi khâu tạo thêm giá trị, nhưng cũng phát sinh thêm chi phí. Bạn thử bấm vào từng chặng để xem họ làm gì, cần gì và chịu áp lực gì."
     >
-      <Reveal className="mb-8">
+      <Reveal className="mb-10">
         <Framed
           src={imageMap.valueChain}
-          alt="Bản đồ chuỗi giá trị cà phê"
-          ratio="aspect-[16/6]"
+          alt="Hạt cà phê đi qua các chặng: người trồng, thương lái, bên rang xay, quán cà phê và người uống"
+          ratio="aspect-[16/5]"
+          sizes="100vw"
         />
       </Reveal>
-
-      <div className="mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-wide text-coffee/60">
-        <span>Nguyên liệu</span>
-        <span className="h-px flex-1 bg-gradient-to-r from-leaf via-clay to-steel" />
-        <span>Giá trị tăng dần</span>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        {actors.map((a, i) => (
-          <Reveal key={a.id} delay={i * 70}>
-            <div className="flex h-full flex-col rounded-card border border-coffee/10 bg-white p-5 shadow-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">{a.emoji}</span>
-                <h3 className="font-bold leading-tight text-coffee-dark">{a.name}</h3>
-              </div>
-              <dl className="mt-3 space-y-2 text-sm">
-                <div>
-                  <dt className="font-semibold text-leaf">Đóng góp</dt>
-                  <dd className="text-coffee/75">{a.contribution}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-clay">Lợi ích</dt>
-                  <dd className="text-coffee/75">{a.benefit}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-red-600">Rủi ro</dt>
-                  <dd className="text-coffee/75">{a.risk}</dd>
-                </div>
-              </dl>
-              <div className="mt-auto pt-3">
-                <p className="text-xs font-semibold text-coffee/60">Quyền lực thương lượng</p>
-                <PowerMeter level={a.powerLevel} />
-                <p className="mt-1 text-xs text-coffee/70">{a.power}</p>
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-
-      <Reveal delay={120}>
-        <div className="mt-8 rounded-card border border-coffee/10 bg-coffee-dark p-6 text-cream sm:p-8">
-          <h3 className="text-xl font-bold">Ai hưởng lợi nhiều nhất?</h3>
-          <p className="mt-3 leading-relaxed text-cream/80">{valueChainConclusion}</p>
-        </div>
-      </Reveal>
+      <StakeholderTimeline />
     </SectionShell>
   );
 }
@@ -236,32 +171,44 @@ export function ValueChainSection() {
 /* ====================== 5. UNIT WARNING ========================= */
 export function UnitWarningSection() {
   return (
-    <SectionShell id="unit-warning" tone="cream" kicker="Tư duy phản biện">
-      <div className="grid items-start gap-10 lg:grid-cols-2">
+    <SectionShell
+      id="unit-warning"
+      tone="cream"
+      title="Đừng so vội 40.000đ/kg với 85.000đ/ly"
+      lead="Một bên là giá theo kilogram nguyên liệu, một bên là giá của sản phẩm đã qua chế biến, phục vụ và trải nghiệm tại quán. Vì vậy, không thể chỉ đặt hai con số cạnh nhau rồi kết luận."
+    >
+      <div className="grid items-start gap-12 lg:grid-cols-2">
         <Reveal>
-          <Framed src={imageMap.unitWarning} alt="Cà phê nhân thô so với ly cà phê thành phẩm" />
+          <Framed src={imageMap.unitWarning} alt="Cà phê nhân thô đặt cạnh một ly cà phê đã pha" />
         </Reveal>
         <Reveal delay={100}>
-          <div className="rounded-card border-l-4 border-red-400 bg-white p-6 shadow-sm">
-            <h2 className="display text-2xl font-extrabold text-coffee-dark sm:text-3xl">
-              Không thể kết luận đơn giản: 40.000đ/kg so với 85.000đ/ly
-            </h2>
-            <p className="mt-4 leading-relaxed text-coffee/85">
-              40.000đ/kg là giá nguyên liệu thô theo khối lượng. 85.000đ/ly là giá sản phẩm bán lẻ
-              đã bao gồm rang xay, pha chế, sữa/đá/ly, nhân viên, mặt bằng, marketing, thương hiệu,
-              thuế và trải nghiệm tiêu dùng. Vì vậy, hai con số này không chứng minh trực tiếp ai
-              bóc lột ai, nhưng cho thấy cần phân tích cách giá trị được tạo ra và phân phối trong
-              toàn chuỗi.
+          <div className="rounded-card border-l-4 border-clay bg-white p-6 shadow-sm">
+            <p className="text-lg font-semibold leading-relaxed text-coffee-dark">
+              Muốn so sánh cho đúng, cần quy về cùng đơn vị và cộng thêm các chi phí phát sinh ở
+              từng khâu.
             </p>
           </div>
-          <ul className="mt-5 divide-y divide-coffee/10 overflow-hidden rounded-card border border-coffee/10 bg-white">
-            {unitWarningRows.map((r) => (
-              <li key={r.layer} className="flex gap-4 px-5 py-3 text-sm">
-                <span className="w-28 shrink-0 font-bold text-coffee-dark">{r.layer}</span>
-                <span className="text-coffee/75">{r.detail}</span>
-              </li>
-            ))}
-          </ul>
+
+          <div className="mt-6 overflow-hidden rounded-card border border-coffee/10 bg-white shadow-sm">
+            <table className="w-full table-fixed text-sm">
+              <thead>
+                <tr className="bg-coffee/5 text-left">
+                  <th className="p-3 font-bold text-coffee-dark">Khác nhau ở đâu</th>
+                  <th className="p-3 font-bold text-leaf">Cà phê nhân /kg</th>
+                  <th className="p-3 font-bold text-clay">Ly cà phê /ly</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-coffee/10">
+                {comparisonRows.map((r) => (
+                  <tr key={r.dimension} className="align-top">
+                    <td className="p-3 font-semibold text-coffee-dark">{r.dimension}</td>
+                    <td className="p-3 leading-relaxed text-coffee/75">{r.raw}</td>
+                    <td className="p-3 leading-relaxed text-coffee/75">{r.cup}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </Reveal>
       </div>
     </SectionShell>
@@ -274,21 +221,15 @@ export function StateRoleSection() {
     <SectionShell
       id="state-role"
       tone="blue"
-      kicker="Lý thuyết 5.3.2"
-      title="Nhà nước có vai trò gì trong hài hòa lợi ích?"
-      lead="Nhà nước không thay thế thị trường, nhưng có vai trò tạo khung pháp lý, điều tiết quan hệ lợi ích, bảo vệ lợi ích chính đáng của các chủ thể yếu thế, hạn chế mặt tiêu cực của thị trường và thúc đẩy phát triển bền vững."
+      title="Khi thị trường cần người điều phối"
+      lead="Nếu để các bên tự thương lượng hoàn toàn, bên yếu hơn dễ chịu thiệt. Vì vậy, chính sách có vai trò tạo luật chơi, hỗ trợ liên kết và giảm bớt rủi ro cho những người dễ tổn thương nhất."
     >
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid items-stretch gap-5 md:grid-cols-2">
         {statePolicies.map((p, i) => (
           <Reveal key={p.title} delay={i * 70}>
-            <div className="flex h-full gap-4 rounded-card border border-steel/25 bg-white p-5 shadow-sm">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-card bg-steel/15 text-2xl">
-                {p.emoji}
-              </span>
-              <div>
-                <h3 className="font-bold text-coffee-dark">{p.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-coffee/80">{p.body}</p>
-              </div>
+            <div className="h-full rounded-card border border-steel/25 bg-white p-7 shadow-sm">
+              <h3 className="text-lg font-bold text-coffee-dark">{p.title}</h3>
+              <p className="mt-2 leading-relaxed text-coffee/80">{p.body}</p>
             </div>
           </Reveal>
         ))}
@@ -303,17 +244,16 @@ export function PolicySection() {
     <SectionShell
       id="policy"
       tone="blue"
-      kicker="Liên hệ thực tế Việt Nam"
-      title="Một số chính sách có thể liên hệ"
+      title="Góc nhìn từ chính sách"
+      lead="Một vài chính sách có thể liên hệ khi bàn về liên kết sản xuất, tiêu thụ nông sản và phát triển nông nghiệp bền vững."
     >
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid items-stretch gap-5 md:grid-cols-3">
         {realPolicies.map((p, i) => (
           <Reveal key={p.code} delay={i * 90}>
             <div className="flex h-full flex-col rounded-card border border-steel/25 bg-white p-6 shadow-sm">
-              <p className="text-base font-extrabold text-steel">{p.code}</p>
-              <p className="mt-3 text-sm leading-relaxed text-coffee/80">{p.topic}</p>
-              <p className="mt-auto border-t border-coffee/10 pt-3 text-sm leading-relaxed text-coffee-dark">
-                <span className="font-semibold">Liên hệ case: </span>
+              <h3 className="text-base font-bold text-steel">{p.code}</h3>
+              <p className="mt-3 leading-relaxed text-coffee/80">{p.idea}</p>
+              <p className="mt-auto border-t border-coffee/10 pt-3 text-sm leading-relaxed text-coffee/70">
                 {p.relate}
               </p>
             </div>
@@ -321,9 +261,9 @@ export function PolicySection() {
         ))}
       </div>
       <Reveal delay={120}>
-        <p className="mt-6 text-sm italic text-coffee/65">
-          Các chính sách trên có thể hỗ trợ, định hướng và góp phần hài hòa lợi ích, không khẳng
-          định đã giải quyết hoàn toàn vấn đề.
+        <p className="mt-6 text-coffee/65">
+          Đây là vài chính sách để liên hệ cho bài học. Chúng có thể hỗ trợ và định hướng, chứ
+          không có nghĩa là mọi vấn đề đã được giải quyết xong.
         </p>
       </Reveal>
     </SectionShell>
@@ -331,27 +271,51 @@ export function PolicySection() {
 }
 
 /* ====================== 12. CONCLUSION ========================== */
-export function ConclusionSection() {
+export function ConclusionSection({
+  onRetryQuiz,
+  onTryDebate,
+  onSeeChain,
+}: {
+  onRetryQuiz: () => void;
+  onTryDebate: () => void;
+  onSeeChain: () => void;
+}) {
   return (
-    <SectionShell id="conclusion" tone="cream" kicker="Kết luận">
-      <div className="grid items-center gap-10 lg:grid-cols-2">
+    <SectionShell id="conclusion" tone="cream" title="Điều đáng nhớ sau cùng">
+      <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
-          <Framed src={imageMap.conclusion} alt="Cân bằng lợi ích trong chuỗi giá trị cà phê" />
+          <Framed src={imageMap.conclusion} alt="Hình ảnh cân bằng giữa các bên trong chuỗi cà phê" />
         </Reveal>
         <Reveal delay={100}>
-          <h2 className="display text-2xl font-extrabold text-coffee-dark sm:text-3xl">
-            Hài hòa lợi ích không có nghĩa là chia đều, mà là phân phối hợp lý theo đóng góp, rủi
-            ro và vai trò của từng chủ thể.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-coffee/85">
-            Thị trường tạo động lực cho các chủ thể tìm kiếm lợi ích. Tuy nhiên, nếu thiếu liên
-            kết, thiếu minh bạch và thiếu điều tiết, chủ thể yếu thế như nông dân có thể nhận phần
-            lợi ích thấp hơn so với rủi ro họ gánh chịu. Vì vậy, cần kết hợp cơ chế thị trường với
-            vai trò Nhà nước, hợp tác xã, doanh nghiệp và người tiêu dùng để xây dựng chuỗi cà phê
-            công bằng và bền vững hơn.
-          </p>
+          <div className="space-y-4">
+            {conclusionTakeaways.map((t, i) => (
+              <div key={t.title} className="flex gap-4 rounded-card border border-coffee/10 bg-white p-5 shadow-sm">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cream font-extrabold text-coffee">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 className="font-bold text-coffee-dark">{t.title}</h3>
+                  <p className="mt-1 leading-relaxed text-coffee/80">{t.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </Reveal>
       </div>
+
+      <Reveal delay={150}>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <CTAButton variant="primary" onClick={onSeeChain}>
+            Xem lại hành trình hạt cà phê
+          </CTAButton>
+          <CTAButton variant="accent" onClick={onTryDebate}>
+            Thử tranh luận với AI
+          </CTAButton>
+          <CTAButton variant="secondary" onClick={onRetryQuiz}>
+            Làm lại câu hỏi nhanh
+          </CTAButton>
+        </div>
+      </Reveal>
     </SectionShell>
   );
 }

@@ -1,6 +1,6 @@
 /**
- * Dữ liệu cấu hình cho website thuyết trình "Hài hòa lợi ích trong chuỗi giá trị cà phê".
- * Mọi nội dung text, số liệu mô phỏng và đường dẫn ảnh đều tập trung ở đây để dễ chỉnh sửa.
+ * Dữ liệu cho website "Hành trình của một ly cà phê 85.000đ".
+ * Mọi câu chữ, số liệu mô phỏng và đường dẫn ảnh đều gom ở đây để dễ chỉnh.
  */
 
 /* ------------------------------------------------------------------ */
@@ -20,87 +20,86 @@ export const imageMap = {
 } as const;
 
 /* ------------------------------------------------------------------ */
-/* Điều hướng + thứ tự section (dùng cho navbar, observer, presentation) */
+/* Thứ tự các phần (dùng cho điều hướng + lời dẫn)                       */
 /* ------------------------------------------------------------------ */
 export type SectionMeta = {
   id: string;
   title: string;
-  /** Lời gợi ý thuyết trình 30-45 giây */
+  /** Gợi ý lời dẫn khi đứng lớp, hiển thị trong chế độ Lời dẫn */
   note: string;
 };
 
-/** 12 section theo thứ tự cuộn. Presentation mode đi qua toàn bộ. */
 export const sections: SectionMeta[] = [
   {
     id: "hero",
-    title: "Mở đầu",
-    note: "Hôm nay nhóm em phân tích một câu hỏi rất gần gũi: vì sao người tiêu dùng có thể trả 85.000đ cho một ly cà phê, nhưng người nông dân trồng ra hạt cà phê lại có thể nhận phần lợi ích thấp trong chuỗi giá trị?",
+    title: "Bắt đầu từ một ly cà phê",
+    note: "Mở đầu bằng một câu hỏi gần gũi: vì sao một ly cà phê có giá 85.000đ, nhưng người trồng ra hạt cà phê lại có thể nhận phần khá nhỏ?",
   },
   {
     id: "case",
-    title: "Câu chuyện anh Khánh",
-    note: "Anh Khánh đại diện cho người sản xuất nguyên liệu. Anh tạo ra đầu vào quan trọng nhất nhưng lại chịu nhiều rủi ro về thời tiết, giá cả và chi phí sản xuất.",
+    title: "Câu chuyện của anh Khánh",
+    note: "Anh Khánh đại diện cho người trồng cà phê. Anh tạo ra nguyên liệu đầu vào nhưng chịu nhiều rủi ro về thời tiết, giá cả và chi phí.",
   },
   {
     id: "theory",
-    title: "Lý thuyết 5.3.1",
-    note: "Theo lý thuyết lợi ích kinh tế, mỗi chủ thể tham gia hoạt động kinh tế đều theo đuổi lợi ích vật chất nhất định. Quan hệ giữa họ vừa thống nhất vì cần nhau, vừa mâu thuẫn vì phân chia lợi ích.",
+    title: "Vì sao mỗi bên muốn một điều khác nhau",
+    note: "Ai tham gia vào chuỗi cũng mong có phần lợi ích cho mình. Những mong muốn đó nhiều khi không trùng nhau, và đó là lúc xuất hiện mâu thuẫn.",
   },
   {
     id: "value-chain",
-    title: "Chuỗi lợi ích",
-    note: "Trong chuỗi cà phê, giá trị tăng dần qua thu mua, chế biến, bán lẻ và dịch vụ. Chủ thể có thương hiệu, vốn và hệ thống phân phối thường có quyền lực lớn hơn.",
+    title: "Hành trình của hạt cà phê",
+    note: "Trước khi thành một ly cà phê, hạt cà phê đi qua nhiều khâu. Mỗi khâu tạo thêm giá trị, nhưng cũng phát sinh thêm chi phí.",
   },
   {
     id: "unit-warning",
-    title: "Cảnh báo đơn vị",
-    note: "Nhóm em không so trực tiếp 40.000đ/kg với 85.000đ/ly, vì đây là hai đơn vị khác nhau. Điều quan trọng là phân tích giá trị được tạo ra và phân phối qua từng khâu.",
+    title: "Đừng so vội 40.000đ/kg với 85.000đ/ly",
+    note: "Một bên là giá theo kilogram nguyên liệu, một bên là giá của sản phẩm đã qua chế biến và phục vụ. Không thể đặt hai con số cạnh nhau rồi kết luận.",
   },
   {
     id: "simulator",
-    title: "Simulator 85.000đ",
-    note: "Phần mô phỏng này cho thấy một ly cà phê bán lẻ bao gồm nhiều lớp chi phí và lợi ích. Khi muốn tăng phần cho nông dân, chuỗi phải điều chỉnh cách phân phối hoặc tăng giá trị chung.",
+    title: "85.000đ đi đâu",
+    note: "Con số này không chảy hết về một bên. Nó được chia cho nguyên liệu, chế biến, nhân công, mặt bằng, vận hành, thương hiệu và lợi nhuận.",
   },
   {
     id: "shock",
-    title: "Cú sốc giá",
-    note: "Khi thị trường biến động, tác động không chia đều cho các chủ thể. Nông dân thường chịu ảnh hưởng mạnh hơn vì thiếu công cụ phòng vệ và thiếu khả năng thương lượng.",
+    title: "Khi giá thế giới thay đổi",
+    note: "Giá cà phê không chỉ do người mua bán trong nước quyết định. Thị trường thế giới, mùa vụ và chi phí đều có thể làm lợi ích các bên thay đổi.",
   },
   {
     id: "state-role",
-    title: "Vai trò Nhà nước",
-    note: "Nhà nước có vai trò tạo khung pháp lý, hỗ trợ liên kết, tín dụng, thông tin thị trường và bảo vệ lợi ích chính đáng của các chủ thể yếu thế.",
+    title: "Khi thị trường cần người điều phối",
+    note: "Nếu để các bên tự thương lượng hoàn toàn, bên yếu hơn dễ chịu thiệt. Chính sách có vai trò tạo luật chơi, hỗ trợ liên kết và giảm rủi ro.",
   },
   {
     id: "policy",
-    title: "Chính sách thực tế",
-    note: "Các chính sách như Nghị định 98, Nghị định 55 và Quyết định 150 có thể liên hệ với việc hỗ trợ liên kết chuỗi, tín dụng nông nghiệp và phát triển nông nghiệp bền vững.",
+    title: "Góc nhìn từ chính sách",
+    note: "Một vài chính sách có thể liên hệ khi bàn về liên kết sản xuất, tiêu thụ nông sản và phát triển nông nghiệp bền vững.",
   },
   {
     id: "ai-debate",
-    title: "AI Debate",
-    note: "Phần tranh biện AI giúp người xem nhập vai từng chủ thể để hiểu vì sao lợi ích của họ có thể khác nhau và cần được hài hòa.",
+    title: "Thử tranh luận với AI",
+    note: "Chọn một vai trong chuỗi cà phê và thử bảo vệ lợi ích của bên đó. Bạn sẽ thấy mỗi bên đều có lý do riêng.",
   },
   {
     id: "quiz",
-    title: "Quiz",
-    note: "Phần quiz giúp kiểm tra lại các khái niệm chính của bài: lợi ích kinh tế, quan hệ lợi ích, mâu thuẫn lợi ích và vai trò Nhà nước.",
+    title: "Thử xem bạn đã hiểu đến đâu",
+    note: "Một vài câu hỏi ngắn để xem người đọc đã nắm được mối quan hệ lợi ích trong chuỗi cà phê chưa.",
   },
   {
     id: "conclusion",
-    title: "Kết luận",
-    note: "Kết luận của nhóm là thị trường có thể tạo ra giá trị, nhưng để chuỗi cà phê phát triển bền vững thì cần cơ chế hài hòa lợi ích giữa nông dân, doanh nghiệp, người tiêu dùng và Nhà nước.",
+    title: "Điều đáng nhớ sau cùng",
+    note: "Chốt lại: một ly cà phê không chỉ là giá hạt cà phê; mỗi bên đều có lợi ích riêng; hài hòa lợi ích là để các bên cùng gắn bó lâu dài.",
   },
 ];
 
-/** Liên kết nhanh trên sticky navbar (tập con của sections) */
+/** Liên kết nhanh trên thanh điều hướng */
 export const navItems: { id: string; label: string }[] = [
-  { id: "case", label: "Case" },
-  { id: "value-chain", label: "Chuỗi lợi ích" },
-  { id: "simulator", label: "Simulator" },
+  { id: "case", label: "Câu chuyện" },
+  { id: "value-chain", label: "Hành trình" },
+  { id: "simulator", label: "85.000đ" },
   { id: "state-role", label: "Nhà nước" },
-  { id: "quiz", label: "Quiz" },
-  { id: "conclusion", label: "Kết luận" },
+  { id: "quiz", label: "Tự kiểm tra" },
+  { id: "conclusion", label: "Điều đáng nhớ" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -109,125 +108,123 @@ export const navItems: { id: string; label: string }[] = [
 export const heroStats: { value: string; label: string; accent: string }[] = [
   {
     value: "40.000đ/kg",
-    label: "Giá cà phê nhân nông dân bán cho thương lái.",
+    label: "Là giá anh Khánh bán cà phê nhân cho thương lái.",
     accent: "text-leaf",
   },
   {
     value: "85.000đ/ly",
-    label: "Giá bán lẻ một ly cà phê tại thành phố.",
+    label: "Là giá một ly cà phê bạn trả ngoài quán ở thành phố.",
     accent: "text-clay",
   },
   {
-    value: "5 chủ thể",
-    label: "Nông dân, thương lái, rang xay, bán lẻ, người tiêu dùng.",
+    value: "5 chặng",
+    label: "Là số chặng hạt cà phê đi qua trước khi tới tay người uống.",
     accent: "text-coffee",
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* 5.3.1 - Lý thuyết nền tảng */
+/* Vì sao mỗi bên muốn một điều khác nhau */
 /* ------------------------------------------------------------------ */
 export const theoryCards: { title: string; body: string; accent: string }[] = [
   {
-    title: "Lợi ích kinh tế",
-    body: "Lợi ích kinh tế là lợi ích vật chất mà các chủ thể đạt được khi tham gia hoạt động kinh tế. Nó gắn với nhu cầu, vị trí và vai trò của từng chủ thể trong quá trình sản xuất, phân phối, trao đổi và tiêu dùng.",
+    title: "Người trồng mong điều gì",
+    body: "Anh Khánh muốn bán được giá tốt và ổn định, đủ bù chi phí và công sức cả mùa. Với anh, mỗi đồng tăng thêm trên một ký cà phê đều đáng kể.",
     accent: "border-leaf",
   },
   {
-    title: "Quan hệ lợi ích kinh tế",
-    body: "Quan hệ lợi ích kinh tế là quan hệ giữa các chủ thể trong việc xác lập, phân phối và thực hiện lợi ích. Trong chuỗi cà phê, các chủ thể vừa phụ thuộc nhau, vừa có thể mâu thuẫn về phần lợi ích nhận được.",
+    title: "Doanh nghiệp mong điều gì",
+    body: "Bên rang xay và quán cà phê muốn có lãi sau khi trừ chi phí chế biến, mặt bằng, nhân viên và xây thương hiệu. Họ nhìn vào lợi nhuận trên từng ly.",
     accent: "border-clay",
   },
   {
-    title: "Mâu thuẫn lợi ích",
-    body: "Mâu thuẫn xuất hiện khi một bên muốn mua rẻ, bán đắt, giảm rủi ro hoặc tăng lợi nhuận, trong khi bên khác bị giảm thu nhập hoặc mất khả năng thương lượng.",
+    title: "Người uống mong điều gì",
+    body: "Người mua muốn một ly ngon, sạch, tiện và đáng đồng tiền. Khi những mong muốn này không trùng nhau, lợi ích các bên bắt đầu kéo về các hướng khác nhau.",
     accent: "border-coffee",
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* Chuỗi quan hệ lợi ích: 5 chủ thể */
+/* Hành trình của hạt cà phê: 5 chủ thể */
 /* ------------------------------------------------------------------ */
 export type Actor = {
   id: string;
   name: string;
-  emoji: string;
+  role: string;
+  /** Họ làm gì */
   contribution: string;
-  benefit: string;
-  risk: string;
-  power: string;
-  powerLevel: 1 | 2 | 3 | 4; // 1 thấp -> 4 cao, cho thanh thể hiện
+  /** Họ cần gì */
+  desire: string;
+  /** Áp lực của họ */
+  tension: string;
+  powerLevel: 1 | 2 | 3 | 4; // 1 thấp -> 4 cao
 };
 
 export const actors: Actor[] = [
   {
     id: "farmer",
-    name: "Nông dân",
-    emoji: "🧑‍🌾",
-    contribution: "Trồng, chăm sóc, thu hoạch, phơi và sơ chế ban đầu.",
-    benefit: "Tiền bán cà phê nhân.",
-    risk: "Giá thế giới giảm, thời tiết, sâu bệnh, chi phí đầu vào, vốn yếu.",
-    power: "Thấp nếu bán riêng lẻ.",
+    name: "Người trồng",
+    role: "Người làm ra hạt cà phê",
+    contribution: "Trồng, chăm sóc, thu hoạch và phơi sơ chế.",
+    desire: "Bán được giá tốt và ổn định để đủ sống.",
+    tension: "Giá thu mua thấp, gánh rủi ro thời tiết nhưng ít tiếng nói khi thương lượng.",
     powerLevel: 1,
   },
   {
     id: "trader",
     name: "Thương lái",
-    emoji: "🚚",
-    contribution: "Thu mua, gom hàng, vận chuyển, kết nối nguồn cung.",
-    benefit: "Chênh lệch giá mua và giá bán.",
-    risk: "Biến động giá, tồn kho, chất lượng hàng.",
-    power: "Cao hơn nông dân nếu nắm thông tin thị trường.",
+    role: "Người gom hàng và vận chuyển",
+    contribution: "Thu mua từ nhiều nhà vườn, gom hàng rồi chở đi.",
+    desire: "Hưởng phần chênh lệch giữa giá mua và giá bán lại.",
+    tension: "Mua được càng rẻ thì lời càng nhiều, nên dễ tạo sức ép lên người trồng.",
     powerLevel: 2,
   },
   {
     id: "roaster",
-    name: "Nhà rang xay",
-    emoji: "🏭",
-    contribution: "Rang, phối trộn, kiểm soát chất lượng, đóng gói.",
-    benefit: "Giá trị gia tăng từ chế biến.",
-    risk: "Chi phí máy móc, tiêu chuẩn chất lượng, tồn kho.",
-    power: "Trung bình đến cao nếu có công nghệ và thương hiệu.",
+    name: "Bên rang xay",
+    role: "Người chế biến hạt cà phê",
+    contribution: "Rang, phối trộn, kiểm tra chất lượng rồi đóng gói.",
+    desire: "Có nguyên liệu ổn định, giá hợp lý để tạo ra sản phẩm tốt.",
+    tension: "Cần đầu tư máy móc và giữ chuẩn chất lượng, nên chi phí không nhỏ.",
     powerLevel: 3,
   },
   {
     id: "retail",
-    name: "Chuỗi bán lẻ",
-    emoji: "☕",
-    contribution: "Mặt bằng, nhân viên, dịch vụ, marketing, trải nghiệm, thương hiệu.",
-    benefit: "Biên lợi nhuận từ sản phẩm hoàn chỉnh và hệ sinh thái bán lẻ.",
-    risk: "Mặt bằng, vận hành, cạnh tranh.",
-    power: "Cao nếu có thương hiệu, quy mô và dữ liệu khách hàng.",
+    name: "Quán cà phê",
+    role: "Nơi bán ly cà phê cho khách",
+    contribution: "Pha chế, phục vụ, lo mặt bằng, thương hiệu và trải nghiệm.",
+    desire: "Có lãi tốt trên mỗi ly sau khi trừ chi phí vận hành.",
+    tension: "Nắm thương hiệu và khách hàng nên thường giữ phần lợi ích lớn.",
     powerLevel: 4,
   },
   {
     id: "consumer",
-    name: "Người tiêu dùng",
-    emoji: "🙋",
-    contribution: "Chi trả, tạo nhu cầu thị trường.",
-    benefit: "Sản phẩm, không gian, dịch vụ, trải nghiệm.",
-    risk: "Trả giá cao, thiếu thông tin về phân phối lợi ích.",
-    power: "Gián tiếp qua lựa chọn tiêu dùng.",
+    name: "Người uống",
+    role: "Người trả tiền cuối cùng",
+    contribution: "Bỏ tiền mua và tạo ra nhu cầu cho cả chuỗi.",
+    desire: "Một ly ngon, hợp túi tiền và đáng với trải nghiệm nhận được.",
+    tension: "Thường không biết phần mình trả được chia về đâu trong chuỗi.",
     powerLevel: 2,
   },
 ];
 
 export const valueChainConclusion =
-  "Trong chuỗi này, chủ thể có khả năng hưởng lợi lớn thường là khâu nắm thương hiệu, chế biến sâu, hệ thống phân phối và dữ liệu khách hàng. Điều đó không có nghĩa là họ không đóng góp, nhưng phản ánh sự chênh lệch quyền lực thị trường giữa các chủ thể. Nông dân đóng góp nền tảng nguyên liệu nhưng thường yếu về vốn, thông tin, công nghệ, liên kết và khả năng thương lượng.";
+  "Càng về cuối chuỗi, phần giá trị giữ lại thường càng lớn, nhất là ở khâu nắm thương hiệu, chế biến và bán hàng trực tiếp cho khách. Điều đó không có nghĩa các khâu này không đóng góp, mà cho thấy ai nắm thương hiệu, vốn và khách hàng thì thường có tiếng nói mạnh hơn. Người trồng làm ra nguyên liệu đầu tiên nhưng lại hay yếu nhất về vốn, thông tin và khả năng thương lượng.";
 
 /* ------------------------------------------------------------------ */
-/* Cảnh báo phân tích sai đơn vị */
+/* Đừng so vội kg với ly: bảng so sánh hai đơn vị */
 /* ------------------------------------------------------------------ */
-export const unitWarningRows: { layer: string; detail: string }[] = [
-  { layer: "Nguyên liệu", detail: "Cà phê nhân." },
-  { layer: "Chế biến", detail: "Rang xay, phối trộn, đóng gói." },
-  { layer: "Dịch vụ", detail: "Pha chế, phục vụ, mặt bằng." },
-  { layer: "Thương hiệu", detail: "Marketing, hệ thống bán lẻ." },
-  { layer: "Chính sách", detail: "Thuế, tiêu chuẩn, hợp đồng, hỗ trợ liên kết." },
+export const comparisonRows: { dimension: string; raw: string; cup: string }[] = [
+  { dimension: "Đơn vị", raw: "1 kg cà phê nhân", cup: "1 ly cà phê pha sẵn" },
+  { dimension: "Hình thái", raw: "Nguyên liệu thô", cup: "Sản phẩm hoàn chỉnh" },
+  { dimension: "Chế biến", raw: "Chưa rang xay", cup: "Đã rang, pha, phối trộn" },
+  { dimension: "Phục vụ", raw: "Hầu như không có", cup: "Pha chế và phục vụ tại chỗ" },
+  { dimension: "Vận hành", raw: "Không tính vào giá", cup: "Mặt bằng, điện nước, nhân viên" },
+  { dimension: "Trải nghiệm", raw: "Không có", cup: "Không gian, thương hiệu" },
 ];
 
 /* ------------------------------------------------------------------ */
-/* Simulator 85.000đ (số liệu MINH HỌA) */
+/* 85.000đ đi đâu (số liệu mô phỏng) */
 /* ------------------------------------------------------------------ */
 export const CUP_PRICE = 85000;
 
@@ -235,26 +232,25 @@ export type SimPart = { id: string; label: string; percent: number; color: strin
 
 export const simulatorParts: SimPart[] = [
   { id: "raw", label: "Nguyên liệu cà phê", percent: 7, color: "#3e6b3c" },
-  { id: "logistics", label: "Thu mua & logistics", percent: 8, color: "#6b8e5a" },
-  { id: "roasting", label: "Rang xay & chế biến", percent: 12, color: "#7a4a28" },
+  { id: "logistics", label: "Thu mua và vận chuyển", percent: 8, color: "#6b8e5a" },
+  { id: "roasting", label: "Rang xay và chế biến", percent: 12, color: "#7a4a28" },
   { id: "ops", label: "Ly, sữa, đá, vận hành", percent: 18, color: "#a86a3d" },
-  { id: "staff", label: "Nhân viên & mặt bằng", percent: 25, color: "#c98a4b" },
-  { id: "brand", label: "Marketing & thương hiệu", percent: 15, color: "#d97706" },
-  { id: "profit", label: "Lợi nhuận & dự phòng rủi ro", percent: 15, color: "#5c7c89" },
+  { id: "staff", label: "Nhân viên và mặt bằng", percent: 25, color: "#c98a4b" },
+  { id: "brand", label: "Thương hiệu và quảng bá", percent: 15, color: "#d97706" },
+  { id: "profit", label: "Lợi nhuận và dự phòng", percent: 15, color: "#5c7c89" },
 ];
 
 export const simulatorQuestions = [
-  "Nếu tăng phần cho nông dân, phần nào trong chuỗi phải thay đổi?",
-  "Ai có đủ quyền lực để quyết định sự thay đổi đó?",
+  "Nếu muốn người trồng nhận nhiều hơn, phần nào trong chuỗi sẽ phải nhường lại?",
+  "Và ai là người đủ sức quyết định sự thay đổi đó?",
 ];
 
 /* ------------------------------------------------------------------ */
-/* Mini game "Cú sốc giá thế giới" */
+/* Khi giá thế giới thay đổi */
 /* ------------------------------------------------------------------ */
 export type ShockScenario = {
   id: string;
   label: string;
-  emoji: string;
   impacts: { actor: string; text: string; tone: "down" | "up" | "neutral" }[];
   conclusion: string;
 };
@@ -263,209 +259,202 @@ export const shockScenarios: ShockScenario[] = [
   {
     id: "price-drop",
     label: "Giá thế giới giảm 20%",
-    emoji: "📉",
     impacts: [
       {
-        actor: "Nông dân",
-        text: "Dễ bị giảm thu nhập nếu không có hợp đồng bảo hiểm giá hoặc liên kết tiêu thụ.",
+        actor: "Người trồng",
+        text: "Dễ hụt thu nhập nếu không có hợp đồng hay liên kết tiêu thụ để giữ giá.",
         tone: "down",
       },
       {
         actor: "Thương lái",
-        text: "Có thể ép giá mua hoặc giảm rủi ro bằng tồn kho ngắn hạn.",
+        text: "Có thể ép giá mua xuống, hoặc gom hàng ngắn hạn để giảm rủi ro cho mình.",
         tone: "neutral",
       },
       {
-        actor: "Rang xay",
-        text: "Có thể hưởng lợi nếu mua được nguyên liệu rẻ hơn.",
+        actor: "Bên rang xay",
+        text: "Có thể được lợi nếu mua được nguyên liệu rẻ hơn trước.",
         tone: "up",
       },
       {
-        actor: "Bán lẻ",
-        text: "Giá bán có thể không giảm tương ứng vì còn chi phí thương hiệu, vận hành và định vị thị trường.",
+        actor: "Quán cà phê",
+        text: "Giá ly cà phê thường không giảm theo, vì còn thương hiệu và chi phí vận hành.",
         tone: "neutral",
       },
       {
-        actor: "Người tiêu dùng",
-        text: "Chưa chắc được hưởng giá thấp hơn ngay.",
+        actor: "Người uống",
+        text: "Chưa chắc được mua rẻ hơn ngay, dù giá nguyên liệu đã giảm.",
         tone: "neutral",
       },
     ],
     conclusion:
-      "Trong kinh tế thị trường, biến động giá không tác động đều lên mọi chủ thể. Chủ thể yếu về vốn, thông tin và hợp đồng thường chịu rủi ro lớn hơn.",
+      "Một biến động giá không chạm tới mọi người như nhau. Bên ít vốn, ít thông tin và không có hợp đồng thường là người gánh nặng trước.",
   },
   {
     id: "fertilizer-up",
-    label: "Chi phí phân bón tăng",
-    emoji: "🧪",
+    label: "Giá phân bón tăng",
     impacts: [
       {
-        actor: "Nông dân",
-        text: "Chi phí sản xuất tăng, biên lợi nhuận mỏng đi; nếu giá bán không tăng tương ứng thì thu nhập giảm.",
+        actor: "Người trồng",
+        text: "Chi phí trồng tăng, phần lời mỏng đi; nếu giá bán không tăng theo thì thu nhập giảm.",
         tone: "down",
       },
       {
         actor: "Thương lái",
-        text: "Ít ảnh hưởng trực tiếp, nhưng nguồn cung có thể giảm nếu nông dân thu hẹp sản xuất.",
+        text: "Ít ảnh hưởng trực tiếp, nhưng hàng có thể ít đi nếu nhà vườn thu hẹp sản xuất.",
         tone: "neutral",
       },
       {
-        actor: "Rang xay",
-        text: "Giá nguyên liệu đầu vào có thể nhích lên, biên lợi nhuận chịu một phần áp lực.",
+        actor: "Bên rang xay",
+        text: "Giá nguyên liệu nhích lên một chút, chịu một phần áp lực chi phí.",
         tone: "neutral",
       },
       {
-        actor: "Bán lẻ",
-        text: "Ít nhạy cảm nhất nhờ thương hiệu và định giá, có thể chuyển một phần chi phí sang giá bán.",
+        actor: "Quán cà phê",
+        text: "Ít bị ảnh hưởng nhất, và có thể chuyển một phần chi phí sang giá bán.",
         tone: "up",
       },
       {
-        actor: "Người tiêu dùng",
-        text: "Có thể chịu giá cao hơn ở cuối chuỗi nếu chi phí được chuyển tiếp.",
+        actor: "Người uống",
+        text: "Có thể trả thêm một chút nếu chi phí được đẩy dần về phía cuối chuỗi.",
         tone: "down",
       },
     ],
     conclusion:
-      "Khi chi phí đầu vào tăng, người trực tiếp sản xuất thường gánh áp lực trước. Khâu cuối có thương hiệu dễ chuyển dịch chi phí hơn.",
+      "Khi chi phí đầu vào tăng, người trực tiếp làm ra hạt cà phê thường thấm đòn trước. Khâu cuối có thương hiệu thì dễ xoay xở hơn.",
   },
   {
     id: "demand-up",
-    label: "Nhu cầu tiêu dùng tại thành phố tăng",
-    emoji: "📈",
+    label: "Người thành phố uống nhiều hơn",
     impacts: [
       {
-        actor: "Nông dân",
-        text: "Nhu cầu nguyên liệu tăng có thể cải thiện giá thu mua, nhưng lợi ích phụ thuộc vào việc có liên kết tiêu thụ hay không.",
+        actor: "Người trồng",
+        text: "Hàng được mua nhiều hơn nên giá có thể khá hơn, nhưng còn tùy có liên kết hay không.",
         tone: "up",
       },
       {
         actor: "Thương lái",
-        text: "Cơ hội tăng khối lượng giao dịch và lợi nhuận.",
+        text: "Có thêm cơ hội gom và bán nhiều hơn.",
         tone: "up",
       },
       {
-        actor: "Rang xay",
-        text: "Tăng công suất, hưởng lợi từ quy mô.",
+        actor: "Bên rang xay",
+        text: "Chạy nhiều hàng hơn, được lợi nhờ quy mô.",
         tone: "up",
       },
       {
-        actor: "Bán lẻ",
-        text: "Hưởng lợi rõ nhất nhờ doanh thu và biên lợi nhuận tăng.",
+        actor: "Quán cà phê",
+        text: "Được lợi rõ nhất nhờ bán được nhiều ly hơn.",
         tone: "up",
       },
       {
-        actor: "Người tiêu dùng",
-        text: "Nhiều lựa chọn hơn, nhưng giá chưa chắc giảm.",
+        actor: "Người uống",
+        text: "Có nhiều lựa chọn hơn, dù giá chưa chắc rẻ đi.",
         tone: "neutral",
       },
     ],
     conclusion:
-      "Khi thị trường thuận lợi, các khâu đều có thể hưởng lợi, nhưng phần cải thiện cho nông dân lớn hay nhỏ vẫn phụ thuộc vào liên kết và vị thế thương lượng.",
+      "Lúc thị trường thuận lợi, gần như ai cũng có phần. Nhưng người trồng được lợi nhiều hay ít vẫn tùy vào việc họ có đứng chung trong một liên kết hay không.",
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* 5.3.2 - Vai trò Nhà nước: 5 nhóm chính sách */
+/* Khi thị trường cần người điều phối: 4 việc Nhà nước có thể làm */
 /* ------------------------------------------------------------------ */
-export const statePolicies: { title: string; body: string; emoji: string }[] = [
+export const statePolicies: { title: string; body: string }[] = [
   {
-    title: "Minh bạch thông tin thị trường",
-    body: "Cung cấp thông tin giá cả, nhu cầu, tiêu chuẩn chất lượng để nông dân không bị bất lợi do thiếu thông tin.",
-    emoji: "📊",
+    title: "Tạo luật chơi rõ ràng",
+    body: "Đặt ra quy định về hợp đồng, chất lượng và nguồn gốc, để các bên biết rõ quyền lợi và trách nhiệm của mình.",
   },
   {
-    title: "Hỗ trợ hợp tác xã và liên kết chuỗi",
-    body: "Khuyến khích nông dân tham gia hợp tác xã, liên kết với doanh nghiệp chế biến và bán lẻ để tăng khả năng thương lượng.",
-    emoji: "🤝",
+    title: "Hỗ trợ người trồng liên kết",
+    body: "Khuyến khích hợp tác xã và liên kết với doanh nghiệp, cùng nguồn vốn vay hợp lý, để người trồng không phải đứng một mình khi thương lượng.",
   },
   {
-    title: "Hỗ trợ tín dụng nông nghiệp",
-    body: "Giúp nông dân tiếp cận vốn hợp lý để đầu tư giống, công nghệ, tưới tiêu, sơ chế và bảo quản.",
-    emoji: "🏦",
+    title: "Giảm rủi ro thị trường",
+    body: "Cung cấp thông tin giá cả, hỗ trợ chế biến và bảo quản, để một cú biến động giá không đẩy hết thiệt hại về phía người trồng.",
   },
   {
-    title: "Phát triển chế biến sâu và thương hiệu nông sản",
-    body: "Không chỉ bán nguyên liệu thô, mà tăng giá trị thông qua chế biến, truy xuất nguồn gốc và thương hiệu cà phê Việt Nam.",
-    emoji: "🌱",
-  },
-  {
-    title: "Tiêu chuẩn, hợp đồng và bảo vệ người sản xuất",
-    body: "Hoàn thiện khung pháp lý về hợp đồng bao tiêu, chất lượng, truy xuất nguồn gốc, bảo hiểm nông nghiệp và xử lý hành vi ép giá bất hợp lý.",
-    emoji: "🛡️",
+    title: "Bảo vệ bên yếu thế",
+    body: "Theo dõi và xử lý việc ép giá bất hợp lý, để bên có ít tiếng nói trong chuỗi vẫn được đối xử công bằng.",
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* Chính sách thực tế tại Việt Nam */
+/* Góc nhìn từ chính sách */
 /* ------------------------------------------------------------------ */
-export const realPolicies: { code: string; topic: string; relate: string }[] = [
+export const realPolicies: { code: string; idea: string; relate: string }[] = [
   {
     code: "Nghị định 98/2018/NĐ-CP",
-    topic: "Chính sách khuyến khích phát triển hợp tác, liên kết trong sản xuất và tiêu thụ sản phẩm nông nghiệp.",
-    relate: "Có thể giúp nông dân không bán riêng lẻ, tham gia chuỗi liên kết để tăng khả năng thương lượng.",
+    idea: "Khuyến khích người trồng, hợp tác xã và doanh nghiệp liên kết với nhau trong sản xuất và tiêu thụ.",
+    relate: "Giúp người trồng không phải bán lẻ một mình, mà tham gia vào một chuỗi có hợp đồng rõ ràng hơn.",
   },
   {
     code: "Nghị định 55/2015/NĐ-CP",
-    topic: "Chính sách tín dụng phục vụ phát triển nông nghiệp, nông thôn.",
-    relate: "Có thể hỗ trợ vốn cho nông dân, hợp tác xã và doanh nghiệp nông nghiệp.",
+    idea: "Mở đường cho người trồng và hợp tác xã tiếp cận nguồn vốn vay phục vụ sản xuất.",
+    relate: "Có vốn, người trồng mới dễ đầu tư vào chất lượng và không phải bán vội mỗi khi cần tiền.",
   },
   {
     code: "Quyết định 150/QĐ-TTg",
-    topic: "Chiến lược phát triển nông nghiệp và nông thôn bền vững giai đoạn 2021-2030, tầm nhìn 2050.",
-    relate: "Định hướng nâng cao giá trị gia tăng, phát triển bền vững, tổ chức lại sản xuất và chuỗi giá trị.",
+    idea: "Định hướng phát triển nông nghiệp bền vững, nâng cao giá trị và tổ chức lại sản xuất.",
+    relate: "Hướng tới việc giữ lại nhiều giá trị hơn ở vùng trồng, thay vì dồn hết về khâu cuối.",
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* AI Debate: lập luận mẫu theo vai */
+/* Thử tranh luận với AI: lời mỗi vai */
 /* ------------------------------------------------------------------ */
-export const debateRoles: { id: string; name: string; emoji: string; argument: string }[] = [
+export const debateRoles: {
+  id: string;
+  name: string;
+  self: string;
+  argument: string;
+}[] = [
   {
     id: "farmer",
-    name: "Nông dân",
-    emoji: "🧑‍🌾",
+    name: "Người trồng",
+    self: "Tôi là người trồng",
     argument:
-      "Tôi tạo ra nguyên liệu đầu vào và chịu rủi ro sản xuất lớn, nhưng quyền thương lượng thấp. Tôi cần liên kết hợp tác xã, hợp đồng ổn định và thông tin thị trường minh bạch.",
+      "Tôi làm ra hạt cà phê và gánh phần lớn rủi ro mùa vụ, nhưng tiếng nói lại nhỏ nhất. Tôi mong có liên kết, hợp đồng ổn định và biết được giá thị trường thật sự.",
   },
   {
     id: "trader",
     name: "Thương lái",
-    emoji: "🚚",
+    self: "Tôi là thương lái",
     argument:
-      "Tôi giúp gom hàng, vận chuyển và kết nối nông dân với doanh nghiệp. Tôi chịu rủi ro giá và tồn kho, nhưng vai trò trung gian của tôi cần minh bạch hơn để không gây bất lợi cho người trồng.",
+      "Tôi gom hàng từ nhiều nhà vườn và lo khâu vận chuyển, cũng chịu rủi ro giá và tồn kho. Nhưng tôi đồng ý là khâu trung gian nên minh bạch hơn để người trồng không thiệt.",
   },
   {
     id: "roaster",
-    name: "Nhà rang xay",
-    emoji: "🏭",
+    name: "Bên rang xay",
+    self: "Tôi là bên rang xay",
     argument:
-      "Tôi tạo giá trị gia tăng qua rang xay, phối trộn và kiểm soát chất lượng. Phần lợi ích của tôi đến từ công nghệ và tiêu chuẩn, nhưng nguồn nguyên liệu ổn định mới giúp tôi phát triển bền vững.",
+      "Tôi biến hạt thô thành sản phẩm có chất lượng, và phải đầu tư máy móc, công nghệ. Nhưng tôi chỉ phát triển bền được khi nguồn nguyên liệu ổn định và người trồng còn gắn bó.",
   },
   {
     id: "retail",
-    name: "Chuỗi bán lẻ",
-    emoji: "☕",
+    name: "Quán cà phê",
+    self: "Tôi là quán cà phê",
     argument:
-      "Tôi không chỉ bán cà phê nguyên liệu mà bán sản phẩm hoàn chỉnh gồm dịch vụ, mặt bằng, thương hiệu và trải nghiệm. Tuy nhiên, chuỗi giá trị bền vững cần quan tâm đến lợi ích của người sản xuất.",
+      "Tôi không chỉ bán cà phê, mà bán cả không gian, dịch vụ và thương hiệu. Dù vậy, một chuỗi bền vững thì vẫn cần quan tâm tới phần của người làm ra hạt cà phê.",
   },
   {
     id: "consumer",
-    name: "Người tiêu dùng",
-    emoji: "🙋",
+    name: "Người uống",
+    self: "Tôi là người uống",
     argument:
-      "Tôi trả tiền cho trải nghiệm và chất lượng, và tôi tạo ra nhu cầu thị trường. Nếu có thông tin minh bạch về nguồn gốc, tôi sẵn sàng ủng hộ sản phẩm chia sẻ lợi ích công bằng hơn cho nông dân.",
+      "Tôi trả tiền cho chất lượng và trải nghiệm, và chính tôi tạo ra nhu cầu. Nếu biết rõ nguồn gốc, tôi sẵn lòng ủng hộ nơi chia sẻ công bằng hơn cho người trồng.",
   },
   {
     id: "state",
-    name: "Nhà nước",
-    emoji: "🏛️",
+    name: "Nhà quản lý",
+    self: "Tôi là nhà quản lý",
     argument:
-      "Tôi cần tạo khung pháp lý và chính sách để các lợi ích không triệt tiêu nhau, đặc biệt bảo vệ lợi ích chính đáng của chủ thể yếu thế.",
+      "Tôi không thay thị trường quyết định, nhưng tôi đặt ra luật chơi để các bên không triệt tiêu nhau, và để bên yếu thế được bảo vệ.",
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* Quiz / Progress test */
+/* Thử xem bạn đã hiểu đến đâu */
 /* ------------------------------------------------------------------ */
 export type QuizQuestion = {
   question: string;
@@ -476,61 +465,76 @@ export type QuizQuestion = {
 
 export const quizQuestions: QuizQuestion[] = [
   {
-    question: "Lợi ích kinh tế trong case cà phê chủ yếu là gì?",
+    question: "Trong câu chuyện cà phê, lợi ích kinh tế của mỗi bên chủ yếu là gì?",
     options: [
-      "Chỉ là tiền lương của người lao động trong quán cà phê.",
-      "Lợi ích vật chất mà các chủ thể nhận được khi tham gia chuỗi sản xuất, trao đổi và tiêu dùng.",
-      "Chỉ là lợi nhuận của chuỗi bán lẻ.",
-      "Chỉ là giá bán một ly cà phê.",
+      "Chỉ là tiền lương của nhân viên trong quán.",
+      "Là phần lợi ích mà mỗi bên nhận được khi tham gia trồng, chế biến, mua bán và tiêu dùng.",
+      "Chỉ là lợi nhuận của quán cà phê.",
+      "Chỉ là giá bán của một ly cà phê.",
     ],
     answer: 1,
-    explain: "Mỗi chủ thể có lợi ích riêng gắn với vị trí của họ trong chuỗi.",
+    explain: "Mỗi bên có một phần lợi ích riêng, gắn với vị trí của họ trong chuỗi.",
   },
   {
-    question: "Vì sao nông dân thường yếu thế trong chuỗi giá trị?",
+    question: "Vì sao người trồng thường ở thế yếu hơn trong chuỗi?",
     options: [
-      "Vì nông dân không đóng góp gì cho chuỗi.",
-      "Vì người tiêu dùng không thích cà phê.",
-      "Vì thiếu vốn, thiếu thông tin, quy mô nhỏ và khả năng thương lượng thấp.",
-      "Vì thương hiệu không quan trọng trong thị trường.",
+      "Vì người trồng không đóng góp gì.",
+      "Vì người uống không thích cà phê.",
+      "Vì ít vốn, ít thông tin, quy mô nhỏ và khó thương lượng.",
+      "Vì thương hiệu không quan trọng.",
     ],
     answer: 2,
-    explain: "Đây là nguyên nhân khiến lợi ích có thể phân phối không cân xứng.",
+    explain: "Chính những điểm yếu này khiến phần lợi ích dễ nghiêng về các khâu sau.",
   },
   {
-    question:
-      "Có nên kết luận trực tiếp từ 40.000đ/kg và 85.000đ/ly rằng bán lẻ hưởng toàn bộ phần chênh lệch không?",
+    question: "Có thể nhìn vào 40.000đ/kg và 85.000đ/ly rồi kết luận quán hưởng hết phần chênh không?",
     options: [
-      "Có, vì 85.000đ luôn lớn hơn 40.000đ.",
-      "Không, vì khác đơn vị, khác khâu và còn nhiều chi phí trung gian.",
-      "Có, vì bán lẻ luôn lãi nhiều nhất.",
+      "Có, vì 85.000đ lớn hơn 40.000đ.",
+      "Không, vì hai con số khác đơn vị, khác khâu và còn nhiều chi phí ở giữa.",
+      "Có, vì quán luôn lãi nhiều nhất.",
       "Không thể biết vì thiếu mọi dữ liệu.",
     ],
     answer: 1,
-    explain: "Hai số liệu chỉ dùng để mở vấn đề, không đủ để kết luận trực tiếp.",
+    explain: "Hai con số chỉ giúp mở ra câu hỏi, chưa đủ để kết luận ai hưởng bao nhiêu.",
   },
   {
-    question: "Vai trò của Nhà nước trong quan hệ lợi ích kinh tế là gì?",
+    question: "Nhà nước nên đóng vai trò gì trong mối quan hệ lợi ích này?",
     options: [
-      "Thay thế hoàn toàn thị trường và ấn định mọi mức giá.",
-      "Đứng ngoài, để thị trường tự điều chỉnh tuyệt đối.",
-      "Chỉ thu thuế từ doanh nghiệp bán lẻ.",
-      "Tạo khung pháp lý, điều tiết, hỗ trợ chủ thể yếu thế và thúc đẩy hài hòa lợi ích.",
+      "Thay thị trường ấn định mọi mức giá.",
+      "Đứng hẳn ra ngoài, để thị trường tự lo tất cả.",
+      "Chỉ lo thu thuế từ quán cà phê.",
+      "Tạo luật chơi, hỗ trợ liên kết, giảm rủi ro và bảo vệ bên yếu thế.",
     ],
     answer: 3,
-    explain:
-      "Nhà nước không thay thế thị trường mà định hướng và khắc phục mặt tiêu cực của thị trường.",
+    explain: "Nhà nước không làm thay thị trường, mà giúp các bên cùng có chỗ đứng công bằng hơn.",
   },
   {
-    question: "Giải pháp nào giúp nông dân nhận lợi ích công bằng hơn?",
+    question: "Cách nào giúp người trồng nhận được phần công bằng hơn?",
     options: [
-      "Bán cà phê nhân riêng lẻ với giá thấp hơn để cạnh tranh.",
-      "Tham gia hợp tác xã, liên kết chuỗi, hợp đồng tiêu thụ, hỗ trợ tín dụng và chế biến sâu.",
-      "Ngừng sản xuất khi giá giảm.",
-      "Chờ thương lái tự nâng giá mua.",
+      "Bán lẻ một mình với giá thấp hơn để cạnh tranh.",
+      "Tham gia hợp tác xã, liên kết theo hợp đồng, được hỗ trợ vốn và làm chế biến sâu hơn.",
+      "Ngừng trồng mỗi khi giá giảm.",
+      "Chờ thương lái tự nâng giá lên.",
     ],
     answer: 1,
-    explain:
-      "Các giải pháp này tăng năng lực thương lượng và giá trị gia tăng cho người sản xuất.",
+    explain: "Những cách này giúp người trồng có thêm tiếng nói và giữ lại nhiều giá trị hơn.",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Điều đáng nhớ sau cùng */
+/* ------------------------------------------------------------------ */
+export const conclusionTakeaways: { title: string; body: string }[] = [
+  {
+    title: "Không chỉ là giá hạt cà phê",
+    body: "Một ly cà phê còn mang theo công chế biến, phục vụ, mặt bằng và thương hiệu, chứ không chỉ là giá nguyên liệu.",
+  },
+  {
+    title: "Mỗi bên một phần riêng",
+    body: "Trên hành trình đó, mỗi bên đều có chi phí, rủi ro và lợi ích của mình, nên khó nhìn đúng nếu chỉ đứng từ một phía.",
+  },
+  {
+    title: "Hài hòa, không phải chia đều",
+    body: "Hài hòa lợi ích là tạo điều kiện để các bên cùng có động lực gắn bó lâu dài, chứ không phải chia đều một cách máy móc.",
   },
 ];

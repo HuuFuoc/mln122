@@ -14,7 +14,7 @@ import {
   UnitWarningSection,
   ValueChainSection,
 } from "./sections";
-import { AIDebateSection, PriceSimulator, QuizSection, ShockGame } from "./interactive";
+import { AIDebateSection, CostBreakdown, QuizSection, ShockGame } from "./interactive";
 
 export default function CoffeeValueChainSite() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -56,7 +56,7 @@ export default function CoffeeValueChainSite() {
     [goToId],
   );
 
-  // Phím mũi tên điều khiển khi đang ở chế độ thuyết trình
+  // Phím mũi tên điều khiển khi đang mở lời dẫn
   useEffect(() => {
     if (!presenting) return;
     const onKey = (e: KeyboardEvent) => {
@@ -79,28 +79,32 @@ export default function CoffeeValueChainSite() {
       />
 
       <main>
-        <HeroSection onStart={() => goToId("case")} onPresentation={() => setPresenting(true)} />
+        <HeroSection onStart={() => goToId("case")} onSeeChain={() => goToId("value-chain")} />
         <CaseSection />
         <TheorySection />
         <ValueChainSection />
         <UnitWarningSection />
-        <PriceSimulator />
+        <CostBreakdown />
         <ShockGame />
         <StateRoleSection />
         <PolicySection />
         <AIDebateSection />
         <QuizSection />
-        <ConclusionSection />
+        <ConclusionSection
+          onRetryQuiz={() => goToId("quiz")}
+          onTryDebate={() => goToId("ai-debate")}
+          onSeeChain={() => goToId("value-chain")}
+        />
       </main>
 
-      <footer className="border-t border-coffee/10 bg-coffee-dark px-6 py-10 text-center text-cream/70 lg:px-16">
-        <p className="mx-auto max-w-2xl text-sm leading-relaxed">
-          Sản phẩm học tập môn Kinh tế chính trị Mác - Lênin. Chủ đề: Quan hệ lợi ích kinh tế
-          trong chuỗi giá trị cà phê Việt Nam.
+      <footer className="border-t border-coffee/10 bg-coffee-dark px-6 py-12 text-center text-cream/70 lg:px-16">
+        <p className="mx-auto max-w-2xl leading-relaxed">
+          Một bài học nhỏ môn Kinh tế chính trị Mác - Lênin, kể về chuyện lợi ích được chia ra sao
+          trong hành trình của một ly cà phê Việt.
         </p>
-        <p className="mt-2 text-xs text-cream/45">
-          Tài liệu liên hệ: Nghị định 98/2018/NĐ-CP, Nghị định 55/2015/NĐ-CP, Quyết định
-          150/QĐ-TTg. Số liệu trong simulator là minh họa.
+        <p className="mx-auto mt-3 max-w-2xl text-xs leading-relaxed text-cream/45">
+          Các con số trong phần mô phỏng chỉ để minh họa. Chính sách nhắc tới để liên hệ: Nghị định
+          98/2018/NĐ-CP, Nghị định 55/2015/NĐ-CP và Quyết định 150/QĐ-TTg.
         </p>
       </footer>
 

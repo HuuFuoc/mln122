@@ -16,16 +16,16 @@ export function Navbar({
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6 lg:px-16">
         <button
           onClick={() => onNav("hero")}
-          className="flex items-center gap-2 text-left"
+          className="flex items-center gap-2.5 text-left focus-visible:outline-none"
           aria-label="Về đầu trang"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-coffee text-cream">
-            ☕
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-coffee">
+            <span className="h-2.5 w-2.5 rounded-full bg-cream" />
           </span>
           <span className="hidden text-sm font-bold leading-tight text-coffee-dark sm:block">
-            Chuỗi giá trị cà phê
+            Hành trình ly cà phê
             <span className="block text-[11px] font-medium text-coffee/60">
-              Hài hòa lợi ích kinh tế
+              Ai đang hưởng lợi?
             </span>
           </span>
         </button>
@@ -37,7 +37,7 @@ export function Navbar({
               <button
                 key={item.id}
                 onClick={() => onNav(item.id)}
-                className={`rounded-chip px-3 py-1.5 text-sm font-semibold transition-colors ${
+                className={`rounded-chip px-3 py-1.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay ${
                   on
                     ? "bg-coffee text-cream"
                     : "text-coffee/70 hover:bg-coffee/10 hover:text-coffee-dark"
@@ -51,13 +51,13 @@ export function Navbar({
 
         <button
           onClick={onOpenPresentation}
-          className="shrink-0 rounded-chip bg-clay px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-clay/90 active:translate-y-px"
+          className="shrink-0 rounded-chip border border-coffee/25 px-4 py-2 text-sm font-semibold text-coffee-dark transition hover:bg-coffee/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay"
         >
-          Thuyết trình
+          Lời dẫn
         </button>
       </div>
 
-      {/* Liên kết cuộn ngang trên mobile */}
+      {/* Liên kết cuộn ngang trên điện thoại */}
       <nav className="flex gap-1 overflow-x-auto px-4 pb-2 md:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {navItems.map((item) => {
           const on = activeId === item.id;
